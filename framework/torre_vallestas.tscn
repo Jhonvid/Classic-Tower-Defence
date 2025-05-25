@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://dbr2xnccbcb2c"]
+
+[ext_resource type="Texture2D" uid="uid://d4h8jeovft5hw" path="res://assets/Towers/Combat Towers/spr_tower_crossbow.png" id="1_4x8e1"]
+[ext_resource type="Script" uid="uid://1spdaxkh2thb" path="res://framework/torre_vallestas.gd" id="1_vax2h"]
+[ext_resource type="PackedScene" uid="uid://cfuw2rmy4bp07" path="res://framework/bullet_vallesta.tscn" id="2_n6dwu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n6dwu"]
+size = Vector2(20, 8)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4r3vs"]
+radius = 103.0
+
+[node name="torre_vallestas" type="StaticBody2D"]
+script = ExtResource("1_vax2h")
+bullet_scene = ExtResource("2_n6dwu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 13)
+shape = SubResource("RectangleShape2D_n6dwu")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_4r3vs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_4x8e1")
+
+[node name="TimerCD" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, -11)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="TimerCD" to="." method="_on_timer_cd_timeout"]

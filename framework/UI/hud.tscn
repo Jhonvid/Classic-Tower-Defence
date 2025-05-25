@@ -1,0 +1,56 @@
+[gd_scene load_steps=2 format=3 uid="uid://bp3fo6l8egp6q"]
+
+[ext_resource type="Script" uid="uid://d3t3c2id8juox" path="res://framework/UI/hud.gd" id="1_5v7jq"]
+
+[node name="hud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5v7jq")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 90.0
+offset_bottom = 35.0
+text = "coins:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 116.0
+offset_top = 4.0
+offset_right = 464.0
+offset_bottom = 23.0
+
+[node name="arqueras" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 7
+text = "T. Arqueras 300
+"
+
+[node name="cañon" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 7
+text = "T.Cañon 500
+"
+
+[node name="vallesta" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 7
+text = "T.Vallesta 4000
+"
+
+[node name="WaveLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 21.0
+offset_right = 74.0
+offset_bottom = 44.0
+theme_override_font_sizes/font_size = 11
+text = "Oleada: 1"
+
+[connection signal="button_down" from="HBoxContainer/arqueras" to="." method="_on_arqueras_button_down"]
+[connection signal="button_down" from="HBoxContainer/cañon" to="." method="_on_cañon_button_down"]
+[connection signal="button_down" from="HBoxContainer/vallesta" to="." method="_on_vallesta_button_down"]

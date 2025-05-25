@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://cck8me5oy0q4i"]
+
+[ext_resource type="Script" uid="uid://dhhrhd1cp101v" path="res://framework/torre.gd" id="1_dl422"]
+[ext_resource type="PackedScene" uid="uid://bya6hi4o7dowk" path="res://framework/bullet.tscn" id="2_6e4gb"]
+[ext_resource type="Texture2D" uid="uid://bmifts0jtif6a" path="res://assets/Towers/Combat Towers/spr_tower_archer.png" id="2_um4gc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6e4gb"]
+size = Vector2(20, 9)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_03amq"]
+radius = 70.0071
+
+[node name="torre" type="StaticBody2D"]
+script = ExtResource("1_dl422")
+bullet_scene = ExtResource("2_6e4gb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7.5)
+shape = SubResource("RectangleShape2D_6e4gb")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_03amq")
+debug_color = Color(0.536059, 0.908195, 1, 0.203922)
+
+[node name="SprTowerArcher" type="Sprite2D" parent="."]
+texture = ExtResource("2_um4gc")
+
+[node name="TimerCD" type="Timer" parent="."]
+wait_time = 0.7
+one_shot = true
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, -7)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="TimerCD" to="." method="_on_timer_cd_timeout"]

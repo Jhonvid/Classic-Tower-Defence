@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6mjeftdkr7hx"]
+
+[ext_resource type="Script" uid="uid://c0l5gp06g2phh" path="res://framework/UI/pause.gd" id="1_nyl1w"]
+
+[node name="Pause" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nyl1w")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 479.0
+offset_bottom = 266.0
+color = Color(0.13748, 0.326808, 0.394494, 0.054902)
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 175.0
+offset_top = 240.0
+offset_right = 215.0
+offset_bottom = 263.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 155.0
+offset_top = 90.0
+offset_right = 326.0
+offset_bottom = 196.0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Clasic Tower Defence"
+text_overrun_behavior = 4
+
+[node name="startt" type="Button" parent="VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+text = "Start Game"
+metadata/pause_mode = true
+
+[node name="exit" type="Button" parent="VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+text = "Exit"
+
+[connection signal="button_down" from="VBoxContainer/startt" to="." method="_on_startt_button_down"]
+[connection signal="button_down" from="VBoxContainer/exit" to="." method="_on_exit_button_down"]

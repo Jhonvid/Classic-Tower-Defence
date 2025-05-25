@@ -1,0 +1,79 @@
+[gd_scene load_steps=11 format=3 uid="uid://dswm5rfi2cvgy"]
+
+[ext_resource type="Script" uid="uid://746yjiqayy51" path="res://framework/slimegrande.gd" id="1_b5xnb"]
+[ext_resource type="Texture2D" uid="uid://daj6525pxsa6n" path="res://assets/Enemies/spr_big_slime.png" id="2_b5xnb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oglsk"]
+size = Vector2(17.5, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8jii"]
+atlas = ExtResource("2_b5xnb")
+region = Rect2(0, 0, 14, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_un0q6"]
+atlas = ExtResource("2_b5xnb")
+region = Rect2(14, 0, 14, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_enj0g"]
+atlas = ExtResource("2_b5xnb")
+region = Rect2(28, 0, 14, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ie6uf"]
+atlas = ExtResource("2_b5xnb")
+region = Rect2(42, 0, 14, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pj6p2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e8jii")
+}, {
+"duration": 0.91,
+"texture": SubResource("AtlasTexture_un0q6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_enj0g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ie6uf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m3x2u"]
+bg_color = Color(0.0392157, 0.0392157, 0.0392157, 0.270588)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dgb1w"]
+bg_color = Color(1, 0.172549, 0.0941176, 1)
+
+[node name="PathFollow2D" type="PathFollow2D"]
+
+[node name="slimegrande" type="CharacterBody2D" parent="." groups=["enemigos"]]
+script = ExtResource("1_b5xnb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="slimegrande"]
+position = Vector2(0.25, 0.5)
+shape = SubResource("RectangleShape2D_oglsk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="slimegrande"]
+position = Vector2(-7.10543e-15, -7.10543e-15)
+scale = Vector2(1.28571, 1.375)
+sprite_frames = SubResource("SpriteFrames_pj6p2")
+frame_progress = 0.581425
+
+[node name="ProgressBar" type="ProgressBar" parent="slimegrande"]
+offset_left = -6.0
+offset_top = -8.0
+offset_right = 6.0
+offset_bottom = -6.0
+theme_override_styles/background = SubResource("StyleBoxFlat_m3x2u")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dgb1w")
+max_value = 1.0
+value = 1.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Marker2D" type="Marker2D" parent="slimegrande"]
+position = Vector2(8, 0)

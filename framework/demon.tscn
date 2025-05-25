@@ -1,0 +1,77 @@
+[gd_scene load_steps=11 format=3 uid="uid://d1t66qqel25uv"]
+
+[ext_resource type="Script" uid="uid://dqwmvyji7a1d6" path="res://demon.gd" id="1_4u551"]
+[ext_resource type="Texture2D" uid="uid://bieqcndkfbquw" path="res://assets/Enemies/spr_demon.png" id="2_1bpgt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8m4x6"]
+size = Vector2(14, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qptcx"]
+atlas = ExtResource("2_1bpgt")
+region = Rect2(0, 0, 10, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0fh8"]
+atlas = ExtResource("2_1bpgt")
+region = Rect2(10, 0, 10, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugq1r"]
+atlas = ExtResource("2_1bpgt")
+region = Rect2(20, 0, 10, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8dln"]
+atlas = ExtResource("2_1bpgt")
+region = Rect2(30, 0, 10, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o1lmx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qptcx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0fh8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugq1r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8dln")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n7lts"]
+bg_color = Color(0.0392157, 0.0392157, 0.0392157, 0.270588)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e5qy1"]
+bg_color = Color(1, 0.172549, 0.0941176, 1)
+
+[node name="demon" type="PathFollow2D"]
+
+[node name="demon" type="CharacterBody2D" parent="." groups=["enemigos"]]
+script = ExtResource("1_4u551")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="demon"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_8m4x6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="demon"]
+scale = Vector2(1.4, 1.5)
+sprite_frames = SubResource("SpriteFrames_o1lmx")
+
+[node name="ProgressBar" type="ProgressBar" parent="demon"]
+offset_left = -6.0
+offset_top = -8.0
+offset_right = 6.0
+offset_bottom = -6.0
+theme_override_styles/background = SubResource("StyleBoxFlat_n7lts")
+theme_override_styles/fill = SubResource("StyleBoxFlat_e5qy1")
+max_value = 1.0
+value = 1.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Marker2D" type="Marker2D" parent="demon"]
+position = Vector2(7, 0)

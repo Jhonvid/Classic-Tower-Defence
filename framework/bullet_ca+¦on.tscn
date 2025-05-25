@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhh5j1sq4ses3"]
+
+[ext_resource type="Script" uid="uid://bqaw2hvk72eub" path="res://framework/bullet_cañon.gd" id="1_7eu8t"]
+[ext_resource type="Texture2D" uid="uid://b2c1g2ijfgtc3" path="res://assets/Towers/Combat Towers Projectiles/spr_tower_cannon_projectile.png" id="2_s7la1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ntviu"]
+size = Vector2(8, 8)
+
+[node name="bulletCañon" type="Area2D"]
+script = ExtResource("1_7eu8t")
+
+[node name="SprTowerCannonProjectile" type="Sprite2D" parent="."]
+texture = ExtResource("2_s7la1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ntviu")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

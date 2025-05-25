@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://bjjyt0jo816f8"]
+
+[ext_resource type="Script" uid="uid://yrhgji003kjg" path="res://duende.gd" id="1_rrlq4"]
+[ext_resource type="Texture2D" uid="uid://itc45jduespe" path="res://assets/Enemies/spr_goblin.png" id="2_rrlq4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qhw6p"]
+size = Vector2(12, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhggw"]
+atlas = ExtResource("2_rrlq4")
+region = Rect2(0, 0, 11, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjlot"]
+atlas = ExtResource("2_rrlq4")
+region = Rect2(11, 0, 11, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2rplr"]
+atlas = ExtResource("2_rrlq4")
+region = Rect2(22, 0, 11, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omk6s"]
+atlas = ExtResource("2_rrlq4")
+region = Rect2(33, 0, 11, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g37wf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhggw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjlot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2rplr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omk6s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n7lts"]
+bg_color = Color(0.0392157, 0.0392157, 0.0392157, 0.270588)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e5qy1"]
+bg_color = Color(1, 0.172549, 0.0941176, 1)
+
+[node name="duende" type="PathFollow2D"]
+
+[node name="duende" type="CharacterBody2D" parent="." groups=["enemigos"]]
+script = ExtResource("1_rrlq4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="duende"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_qhw6p")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="duende"]
+sprite_frames = SubResource("SpriteFrames_g37wf")
+
+[node name="ProgressBar" type="ProgressBar" parent="duende"]
+offset_left = -6.0
+offset_top = -8.0
+offset_right = 6.0
+offset_bottom = -6.0
+theme_override_styles/background = SubResource("StyleBoxFlat_n7lts")
+theme_override_styles/fill = SubResource("StyleBoxFlat_e5qy1")
+max_value = 1.0
+value = 1.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Marker2D" type="Marker2D" parent="duende"]
+position = Vector2(7, 0)

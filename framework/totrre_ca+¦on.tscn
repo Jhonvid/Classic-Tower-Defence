@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://d1xysrqyk2xty"]
+
+[ext_resource type="Script" uid="uid://bcq034pexbha8" path="res://framework/totrre_cañon.gd" id="1_6u2a8"]
+[ext_resource type="Texture2D" uid="uid://b8i6nxghdh270" path="res://assets/Towers/Combat Towers/spr_tower_cannon.png" id="1_gockl"]
+[ext_resource type="PackedScene" uid="uid://dhh5j1sq4ses3" path="res://framework/bullet_cañon.tscn" id="2_pmbgm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6u2a8"]
+size = Vector2(20, 10)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pmbgm"]
+radius = 52.0865
+
+[node name="TotrreCañon" type="StaticBody2D"]
+script = ExtResource("1_6u2a8")
+bullet_scene = ExtResource("2_pmbgm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 11)
+shape = SubResource("RectangleShape2D_6u2a8")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_pmbgm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_gockl")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, -9)
+
+[node name="TimerCD" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="TimerCD" to="." method="_on_timer_cd_timeout"]

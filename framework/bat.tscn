@@ -1,0 +1,77 @@
+[gd_scene load_steps=11 format=3 uid="uid://i3kwlkrsekwa"]
+
+[ext_resource type="Script" uid="uid://ruccg3eb56l7" path="res://framework/bat.gd" id="1_k8vx2"]
+[ext_resource type="Texture2D" uid="uid://berxtuudw7n07" path="res://assets/Enemies/spr_bat.png" id="2_15q8p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k8vx2"]
+size = Vector2(8, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8vx2"]
+atlas = ExtResource("2_15q8p")
+region = Rect2(0, 0, 10, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qptcx"]
+atlas = ExtResource("2_15q8p")
+region = Rect2(10, 0, 10, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0fh8"]
+atlas = ExtResource("2_15q8p")
+region = Rect2(20, 0, 10, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugq1r"]
+atlas = ExtResource("2_15q8p")
+region = Rect2(30, 0, 10, 7)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w8dln"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8vx2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qptcx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0fh8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugq1r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n7lts"]
+bg_color = Color(0.0392157, 0.0392157, 0.0392157, 0.270588)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e5qy1"]
+bg_color = Color(1, 0.172549, 0.0941176, 1)
+
+[node name="bat" type="PathFollow2D"]
+
+[node name="bat" type="CharacterBody2D" parent="." groups=["enemigos"]]
+script = ExtResource("1_k8vx2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bat"]
+shape = SubResource("RectangleShape2D_k8vx2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="bat"]
+position = Vector2(-5.96046e-08, -1.19209e-07)
+scale = Vector2(0.8, 0.785714)
+sprite_frames = SubResource("SpriteFrames_w8dln")
+
+[node name="ProgressBar" type="ProgressBar" parent="bat"]
+offset_left = -6.0
+offset_top = -8.0
+offset_right = 6.0
+offset_bottom = -6.0
+theme_override_styles/background = SubResource("StyleBoxFlat_n7lts")
+theme_override_styles/fill = SubResource("StyleBoxFlat_e5qy1")
+max_value = 1.0
+value = 1.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Marker2D" type="Marker2D" parent="bat"]
+position = Vector2(7, 0)

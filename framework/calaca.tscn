@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://i66h767n64vx"]
+
+[ext_resource type="Script" uid="uid://cn011jcdbere2" path="res://calaca.gd" id="1_8e5qj"]
+[ext_resource type="Texture2D" uid="uid://dksmd245d3vxm" path="res://assets/Enemies/spr_skeleton.png" id="2_8e5qj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fjgti"]
+size = Vector2(8, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jr1k1"]
+atlas = ExtResource("2_8e5qj")
+region = Rect2(0, 0, 8, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oc0qv"]
+atlas = ExtResource("2_8e5qj")
+region = Rect2(8, 0, 8, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_emlk8"]
+atlas = ExtResource("2_8e5qj")
+region = Rect2(16, 0, 8, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pp6fx"]
+atlas = ExtResource("2_8e5qj")
+region = Rect2(24, 0, 8, 7)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ckky8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jr1k1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oc0qv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_emlk8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pp6fx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n7lts"]
+bg_color = Color(0.0392157, 0.0392157, 0.0392157, 0.270588)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e5qy1"]
+bg_color = Color(1, 0.172549, 0.0941176, 1)
+
+[node name="calaca" type="PathFollow2D"]
+
+[node name="calaca" type="CharacterBody2D" parent="." groups=["enemigos"]]
+script = ExtResource("1_8e5qj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="calaca"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_fjgti")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="calaca"]
+sprite_frames = SubResource("SpriteFrames_ckky8")
+
+[node name="ProgressBar" type="ProgressBar" parent="calaca"]
+offset_left = -6.0
+offset_top = -8.0
+offset_right = 6.0
+offset_bottom = -6.0
+theme_override_styles/background = SubResource("StyleBoxFlat_n7lts")
+theme_override_styles/fill = SubResource("StyleBoxFlat_e5qy1")
+max_value = 1.0
+value = 1.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Marker2D" type="Marker2D" parent="calaca"]
+position = Vector2(7, 0)
